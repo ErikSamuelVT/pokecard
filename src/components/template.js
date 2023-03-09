@@ -7,26 +7,25 @@ const Template = () => {
 
     const [state,setState] = useState({});
     
-    useEffect(()=>{
-        const getData = async()=>{
-            const info = await fetch(`https://pokeapi.co/api/v2/pokemon/${getInt()}`) 
-            const data = await info.json();
-    
-            const pokemon = {
-                img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
-                imgJuego: data.sprites.front_default,
-                imgCvg: data.sprites.other.dream_world.front_default,
-                nombre: data.name,
-                experiencia: data.base_experience,
-                hp: data.stats[0].base_stat,
-                ataque: data.stats[1].base_stat,
-                defensa: data.stats[2].base_stat,
-                especial: data.stats[3].base_stat,
-              };
-            setState(pokemon);
-        }
-        getData();
-    },[])
+    const getData = async()=>{
+        const info = await fetch(`https://pokeapi.co/api/v2/pokemon/${getInt()}`) 
+        const data = await info.json();
+
+        const pokemon = {
+            img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
+            imgJuego: data.sprites.front_default,
+            imgCvg: data.sprites.other.dream_world.front_default,
+            nombre: data.name,
+            experiencia: data.base_experience,
+            hp: data.stats[0].base_stat,
+            ataque: data.stats[1].base_stat,
+            defensa: data.stats[2].base_stat,
+            especial: data.stats[3].base_stat,
+          };
+        setState(pokemon);
+    }
+
+    useEffect(()=>{ getData(); },[])
 
     const getInt = ()=>{
         const min = 1;
@@ -38,7 +37,7 @@ const Template = () => {
         <article className="card">
             <img src={pattern} alt="" className="card-header" />
             <div className="card-body">
-                <img src={state.imgJuego} alt="" className="card-body-img" />
+                <img src={state.img} alt="" className="card-body-img" />
                 <h1 className="card-body-title">
                     {state.nombre} 
                     <span> Hp{state.hp}</span>
@@ -60,6 +59,7 @@ const Template = () => {
                 </div>
             </div>
         </article>
+        <button className="btn" onClick={()=> getData()}>Another pokemon</button>
     </main>
     )
 }

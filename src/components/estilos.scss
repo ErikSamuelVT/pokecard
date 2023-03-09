@@ -23,6 +23,7 @@ body {
 
 .flex {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -50,6 +51,8 @@ body {
             border: 5px solid white;
             background-color: white;
             border-radius: 50%;
+            width: 120px;
+            height: 120px;
             margin-top: calc(-48px - 5px);
         }
 
@@ -99,8 +102,19 @@ body {
     }
 }
 
+.btn{
+    width: 25rem;
+    border: none;
+    height: 3.5rem;
+    margin-top: 10px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.35);
+    font-size: 1.5rem;
+    color: whitesmoke;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(37, 180, 187, 1);
 
-
-
-
-
+    &:hover{
+        background-color: rgba(37, 180, 187, 0.5);
+    }
+}
